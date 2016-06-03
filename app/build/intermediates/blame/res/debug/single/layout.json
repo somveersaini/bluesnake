@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\Samsaini\\Desktop\\bluesnake\\app\\build\\intermediates\\res\\merged\\debug\\layout\\number_preference.xml",
+        "source": "C:\\Users\\Samsaini\\Desktop\\bluesnake\\app\\src\\main\\res\\layout\\number_preference.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samsaini\\Desktop\\bluesnake\\app\\build\\intermediates\\res\\merged\\debug\\layout\\color_preference.xml",
+        "source": "C:\\Users\\Samsaini\\Desktop\\bluesnake\\app\\src\\main\\res\\layout\\color_preference.xml"
+    },
+    {
+        "merged": "C:\\Users\\Samsaini\\Desktop\\bluesnake\\app\\build\\intermediates\\res\\merged\\debug\\layout\\icon_preference.xml",
+        "source": "C:\\Users\\Samsaini\\Desktop\\bluesnake\\app\\src\\main\\res\\layout\\icon_preference.xml"
+    }
+]
