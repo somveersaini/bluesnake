@@ -51,9 +51,8 @@ containing a value of this type.
         public static final int email=0x7f020000;
         public static final int ic_menu_revert=0x7f020001;
         public static final int icon=0x7f020002;
-        public static final int thumb=0x7f020003;
-        public static final int twitter=0x7f020004;
-        public static final int world=0x7f020005;
+        public static final int twitter=0x7f020003;
+        public static final int world=0x7f020004;
     }
     public static final class id {
         public static final int actualValue=0x7f0a0011;

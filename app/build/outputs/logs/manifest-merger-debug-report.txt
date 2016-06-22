@@ -1,8 +1,6 @@
 -- Merging decision tree log ---
 manifest
 ADDED from C:\Users\Samsaini\Desktop\bluesnake\app\src\main\AndroidManifest.xml:3:1-47:12
-	xmlns:android
-		ADDED from C:\Users\Samsaini\Desktop\bluesnake\app\src\main\AndroidManifest.xml:4:2-60
 	package
 		ADDED from C:\Users\Samsaini\Desktop\bluesnake\app\src\main\AndroidManifest.xml:5:2-40
 		INJECTED from C:\Users\Samsaini\Desktop\bluesnake\app\src\main\AndroidManifest.xml
@@ -15,6 +13,8 @@ ADDED from C:\Users\Samsaini\Desktop\bluesnake\app\src\main\AndroidManifest.xml:
 		ADDED from C:\Users\Samsaini\Desktop\bluesnake\app\src\main\AndroidManifest.xml:6:2-25
 		INJECTED from C:\Users\Samsaini\Desktop\bluesnake\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Samsaini\Desktop\bluesnake\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\Samsaini\Desktop\bluesnake\app\src\main\AndroidManifest.xml:4:2-60
 uses-sdk
 ADDED from C:\Users\Samsaini\Desktop\bluesnake\app\src\main\AndroidManifest.xml:9:5-43
 	android:targetSdkVersion

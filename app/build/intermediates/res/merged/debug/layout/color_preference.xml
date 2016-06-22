@@ -70,13 +70,15 @@
 	    	android:gravity="center_vertical"
 	    	android:layout_height="fill_parent"
 	    	android:text="Blue:" />
-	    <SeekBar
-	    	android:id="@+id/blue"
-	    	android:layout_marginLeft="5dip"
-	    	android:layout_marginRight="5dip"
-	    	android:layout_width="fill_parent"
-	    	android:max="255"/>
-	    <TextView
+
+		<SeekBar
+            android:id="@+id/blue"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_width="fill_parent"
+            android:max="255"/>
+
+		<TextView
 	    	android:id="@+id/blue_value"
 	    	android:layout_height="fill_parent"
 	    	android:gravity="center_vertical"
