@@ -449,6 +449,8 @@ public class Preferences extends PreferenceActivity implements SharedPreferences
 		editor.remove(resources.getString(R.string.settings_display_isblocky_key));
 		//show walls
 		editor.remove(resources.getString(R.string.settings_display_showwalls_key));
+		//show default wallpaper
+		editor.remove(resources.getString(R.string.settings_default_wall_key));
 		//icon rows
 		editor.remove(resources.getString(R.string.settings_display_iconrows_key));
 		//icon cols

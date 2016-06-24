@@ -5,8 +5,8 @@
 	package="org.bluesnake.snakewallpaper"
 	android:versionCode="6"
 	android:versionName="1.0.5">
-    
-    <uses-sdk android:minSdkVersion="7" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	
 	
     <application

@@ -129,6 +129,11 @@
 					android:summary="@string/settings_color_walls_summary"
 					android:defaultValue="@integer/color_walls_default"
 					android:dependency="@string/settings_display_showwalls_key"/>
+				<CheckBoxPreference
+					android:key="@string/settings_default_wall_key"
+					android:title="@string/settings_default_wall"
+					android:summary="@string/settings_default_wall_desc"
+					android:defaultValue="@bool/display_default_wallpaper"/>
 				<Preference
 					android:key="@string/settings_color_bgimage_key"
 					android:title="@string/settings_color_bgimage"

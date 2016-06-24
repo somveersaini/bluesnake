@@ -171,7 +171,10 @@
     <string name="information_market_view">View Other Applications</string>
     <string name="information_market_view_key">information_market_view</string>
     <string name="information_market_view_summary">Click here to view my other applications on the Android Market</string>
-    <string name="information_market_view_data">market://search?q=somveer%20saini</string>
-    
+    <string name="information_market_view_data">market://search?q=somveer</string>
+    <string name="settings_default_wall_key">current_wallpaper</string>
+    <string name="settings_default_wall">Use current wallpaper</string>
+    <string name="settings_default_wall_desc">Replace background image with current wallpaper</string>
+
     <string name="menu_reset">Reset All</string>
 </resources>

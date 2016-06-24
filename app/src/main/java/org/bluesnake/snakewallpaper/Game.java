@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import org.bluesnake.utilities.WidgetLocationsPreference;
+
+import android.app.WallpaperManager;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -13,6 +15,8 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
@@ -185,6 +189,10 @@ public class Game implements SharedPreferences.OnSharedPreferenceChangeListener 
      * Whether or not we are displaying icon walls
      */
     private boolean mIsDisplayingWalls;
+	/**
+	 * Whether or not we are replacing background image with current wallpaper
+	 */
+	private boolean mIsDisplayingDefaultWallpaper;
     
     /**
      * Current snake positions
@@ -277,6 +285,15 @@ public class Game implements SharedPreferences.OnSharedPreferenceChangeListener 
 			
 			if (Wallpaper.LOG_DEBUG) {
 				Log.d(Game.TAG, "Is Displaying Walls: " + this.mIsDisplayingWalls);
+			}
+		}
+
+		final String showDefaultWallpaper = resources.getString(R.string.settings_default_wall_key);
+		if (all || key.equals(showDefaultWallpaper)) {
+			this.mIsDisplayingDefaultWallpaper = preferences.getBoolean(showDefaultWallpaper, resources.getBoolean(R.bool.display_default_wallpaper));
+
+			if (Wallpaper.LOG_DEBUG) {
+				Log.d(Game.TAG, "Is Replacing default background: " + this.mIsDisplayingDefaultWallpaper);
 			}
 		}
 		
@@ -716,32 +733,55 @@ public class Game implements SharedPreferences.OnSharedPreferenceChangeListener 
     	}
     	
     	//Background image
-    	if (this.mBackgroundPath != null) {
+    	if (this.mBackgroundPath != null || this.mIsDisplayingDefaultWallpaper) {
+
 			try {
-				final Bitmap temp = BitmapFactory.decodeStream(Wallpaper.CONTEXT.getContentResolver().openInputStream(Uri.parse(this.mBackgroundPath)));
-				final float pictureAR = temp.getWidth() / (temp.getHeight() * 1.0f);
-				final float screenAR = screenWidth / (screenHeight * 1.0f);
-				int newWidth;
-				int newHeight;
-				int x;
-				int y;
-				
-				if (pictureAR > screenAR) {
-					//wider than tall related to the screen AR
-					newHeight = screenHeight;
-					newWidth = (int)(temp.getWidth() * (screenHeight / (temp.getHeight() * 1.0f)));
-					x = (newWidth - screenWidth) / 2;
-					y = 0;
-				} else {
-					//taller than wide related to the screen AR
-					newWidth = screenWidth;
-					newHeight = (int)(temp.getHeight() * (screenWidth / (temp.getWidth() * 1.0f)));
-					x = 0;
-					y = (newHeight - screenHeight) / 2;
+				Bitmap temp = null;
+				if(this.mIsDisplayingDefaultWallpaper){
+					WallpaperManager wallpaperManager = WallpaperManager.getInstance(Wallpaper.CONTEXT);
+					Drawable wallpaperDrawable = wallpaperManager.getDrawable();
+					if (wallpaperDrawable instanceof BitmapDrawable) {
+						BitmapDrawable bitmapDrawable = (BitmapDrawable) wallpaperDrawable;
+						if(bitmapDrawable.getBitmap() != null) {
+							Log.v(TAG, "performResize: bitmapdrawable");
+							temp =  bitmapDrawable.getBitmap();
+						}
+					}else{
+						Log.v(TAG, "performResize: not a bitmapdrawable");
+					}
+				}else {
+					temp = BitmapFactory.decodeStream(Wallpaper.CONTEXT.getContentResolver().openInputStream(Uri.parse(this.mBackgroundPath)));
 				}
-				
-	    		final Bitmap scaled = Bitmap.createScaledBitmap(temp, newWidth, newHeight, false);
-	    		this.mBackground = Bitmap.createBitmap(scaled, x, y, screenWidth, screenHeight);
+				if(temp != null) {
+					final float pictureAR = temp.getWidth() / (temp.getHeight() * 1.0f);
+					final float screenAR = screenWidth / (screenHeight * 1.0f);
+					int newWidth;
+					int newHeight;
+					int x;
+					int y;
+
+					if (pictureAR > screenAR) {
+						//wider than tall related to the screen AR
+						newHeight = screenHeight;
+						newWidth = (int) (temp.getWidth() * (screenHeight / (temp.getHeight() * 1.0f)));
+						x = (newWidth - screenWidth) / 2;
+						y = 0;
+					} else {
+						//taller than wide related to the screen AR
+						newWidth = screenWidth;
+						newHeight = (int) (temp.getHeight() * (screenWidth / (temp.getWidth() * 1.0f)));
+						x = 0;
+						y = (newHeight - screenHeight) / 2;
+					}
+
+					final Bitmap scaled = Bitmap.createScaledBitmap(temp, newWidth, newHeight, false);
+					this.mBackground = Bitmap.createBitmap(scaled, x, y, screenWidth, screenHeight);
+				}else {
+					Log.w(Game.TAG, "Unable to load Current Wallpaper bitmap.");
+					Toast.makeText(Wallpaper.CONTEXT, "\"Unable to load Current Wallpaper bitmap.", Toast.LENGTH_SHORT).show();
+					this.mBackground = null;
+				}
+
 			} catch (final Exception e) {
 				e.printStackTrace();
 				Log.w(Game.TAG, "Unable to load background bitmap.");
