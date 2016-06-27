@@ -4,5 +4,5 @@
 	<bool name="display_showwalls_default">false</bool>
 	<bool name="display_isblocky_default">false</bool>
 	<bool name="game_usercontrol_default">true</bool>
-	<bool name="display_default_wallpaper">false</bool>
+	<bool name="display_default_wallpaper">true</bool>
 </resources>
